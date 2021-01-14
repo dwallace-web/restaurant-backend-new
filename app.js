@@ -4,9 +4,10 @@ const app = Express();
 const database = require('./db');
 
 database.sync();
+// database.sync({ force: true });
 
 app.use(Express.json());
-app.use(require('./middlewares/headers'));
+app.use(require('./middleware/headers'));
 
 app.use(Express.static(__dirname + '/public'));
 app.get('/', (request, response) => response.render('index'));

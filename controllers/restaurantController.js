@@ -56,7 +56,7 @@ router.post('/', validateSession, async (req, res) => {
       userId: req.user.id,
       name: req.body.name,
       address: req.body.address,
-      phoneNumber: req.body.phonenumber,
+      phonenumber: req.body.phonenumber,
       socialmedia: req.body.socialmedia,
       category: req.body.category,
     });
@@ -74,7 +74,7 @@ router.put('/:id', validateSession, async (req, res) => {
     const updatedDetails = {
       name: req.body.name,
       address: req.body.address,
-      phoneNumber: req.body.phonenumber,
+      phonenumber: req.body.phonenumber,
       socialmedia: req.body.socialmedia,
       category: req.body.category,
     };

@@ -14,8 +14,12 @@ const User = database.import('./models/user');
 const Restaurant = database.import('./models/restaurant');
 const Comment = database.import('./models/comment');
 
+User.hasMany(Restaurant);
+Restaurant.belongsTo(User);
+
 Restaurant.hasMany(Comment);
 User.hasMany(Comment);
+
 Comment.belongsTo(User);
 Comment.belongsTo(Restaurant);
 

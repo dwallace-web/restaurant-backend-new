@@ -9,10 +9,8 @@ router.post('/signup', (req, res) => {
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 12),
     username: req.body.username,
-    phoneNumber: req.body.phonenumber,
-    lastName: req.body.lastname,
-    firstName: req.body.firstname,
-    restaurantOwner: req.body.restaurantowner,
+    phonenumber: req.body.phonenumber,
+    restaurantowner: req.body.restaurantowner,
   })
     .then((user) => {
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -79,7 +77,7 @@ router.post('/test', (req, res) => {
     email: 'blood',
     password: 'blood',
     username: 'blood',
-    restaurantOwner: false,
+    restaurantowner: false,
   })
     .then((user) => {
       res.status(200).json({
@@ -89,4 +87,4 @@ router.post('/test', (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-module.exports = userController;
+module.exports = router;
