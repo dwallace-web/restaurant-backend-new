@@ -6,9 +6,10 @@ const database = require('./db');
 database.sync();
 
 app.use(Express.json());
-app.use(require('./middlewares/cors'));
+app.use(require('./middlewares/headers'));
 
-app.use(Express.json());
+app.use(Express.static(__dirname + '/public'));
+app.get('/', (request, response) => response.render('index'));
 
 const usercontroller = require('./controllers/userController');
 app.use('/user', usercontroller);

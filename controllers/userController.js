@@ -1,21 +1,9 @@
-const { Router } = require('express');
-const { User } = require('../models');
+const router = require('express').Router();
+const User = require('../db').import('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const userController = Router();
 
-userController.get('/', (req, res) => {
-  //req deconstruction
-  User.findAll()
-    .then((user) => {
-      res.status(200).json({
-        users: user,
-      });
-    })
-    .catch((err) => res.status(500).json({ error: err }));
-});
-
-userController.post('/signup', (req, res) => {
+router.post('/signup', (req, res) => {
   //req deconstruction
   User.create({
     email: req.body.email,
@@ -40,23 +28,7 @@ userController.post('/signup', (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-userController.post('/test', (req, res) => {
-  //req deconstruction
-  User.create({
-    email: 'blood',
-    password: 'blood',
-    username: 'blood',
-    restaurantOwner: false,
-  })
-    .then((user) => {
-      res.status(200).json({
-        user: user,
-      });
-    })
-    .catch((err) => res.status(500).json({ error: err }));
-});
-
-userController.post('/signin', (req, res) => {
+router.post('/signin', (req, res) => {
   // console.log('login func start')
 
   User.findOne({
@@ -88,6 +60,33 @@ userController.post('/signin', (req, res) => {
   });
 
   // console.log('login func end')
+});
+
+router.get('/', (req, res) => {
+  //req deconstruction
+  User.findAll()
+    .then((user) => {
+      res.status(200).json({
+        users: user,
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
+router.post('/test', (req, res) => {
+  //req deconstruction
+  User.create({
+    email: 'blood',
+    password: 'blood',
+    username: 'blood',
+    restaurantOwner: false,
+  })
+    .then((user) => {
+      res.status(200).json({
+        user: user,
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err }));
 });
 
 module.exports = userController;
