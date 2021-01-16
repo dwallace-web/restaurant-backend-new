@@ -19,7 +19,7 @@ const commentcontroller = require('./controllers/commentController');
 app.use('/comment', commentcontroller);
 
 const restaurantcontroller = require('./controllers/restaurantController');
-app.use('restuarant', restaurantcontroller);
+app.use('/restaurant', restaurantcontroller);
 
 app.listen(process.env.PORT, () =>
   console.log(`App is listening on the Port number: ${process.env.PORT}`)
