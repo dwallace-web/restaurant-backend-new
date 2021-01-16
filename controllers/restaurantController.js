@@ -59,9 +59,11 @@ router.post('/', validateSession, async (req, res) => {
       phonenumber: req.body.phonenumber,
       socialmedia: req.body.socialmedia,
       category: req.body.category,
-    });
-    res.status(200).json({
-      message: 'New Restaurant Created!',
+    }).then((restaurant) => {
+      res.status(200).json({
+        message: 'New Restaurant Created!',
+        restaurant: restaurant,
+      });
     });
   } catch (e) {
     res.status(500).json({ error: e });
