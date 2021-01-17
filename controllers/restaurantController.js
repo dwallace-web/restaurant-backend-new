@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 //get single restaurant
-router.get('/:id', async (req, res) => {
+router.get('/location/:id', async (req, res) => {
   try {
     await Restaurant.findOne({
       where: { id: req.params.id },
@@ -31,8 +31,10 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+const validateSession = require('../middleware/validate-session');
+
 //get restaurant by category
-router.get('/category/:id', async (req, res) => {
+router.get('/category/:id', validateSession, async (req, res) => {
   try {
     await Restaurant.findAll({
       where: { category: req.params.id },
@@ -47,7 +49,18 @@ router.get('/category/:id', async (req, res) => {
   }
 });
 
-const validateSession = require('../middleware/validate-session');
+//get restaurants by user
+router.get('/user', validateSession, async (req, res) => {
+  console.log(req);
+
+  let userid = req.user.id;
+
+  Restaurant.findAll({
+    where: { userId: userid },
+  })
+    .then((restaurant) => res.status(200).json(restaurant))
+    .catch((err) => res.status(500).json({ error: err }));
+});
 
 router.post('/', validateSession, async (req, res) => {
   try {
