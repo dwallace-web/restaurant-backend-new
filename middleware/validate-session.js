@@ -4,7 +4,7 @@ const User = require('../db').import('../models/user');
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization; //Postman --headers (key)Authorization
 
-  console.log('token ----> ', token);
+  // console.log('token ----> ', token);
   if (!token) {
     return res.status(403).send({ auth: false, message: 'No token provided' }); //403 Forbidden Error
   } else {

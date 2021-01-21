@@ -51,7 +51,7 @@ router.get('/category/:id', validateSession, async (req, res) => {
 
 //get restaurants by user
 router.get('/user', validateSession, async (req, res) => {
-  console.log(req);
+  // console.log(req);
 
   let userid = req.user.id;
 
