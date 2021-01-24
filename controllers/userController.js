@@ -21,6 +21,7 @@ router.post('/signup', (req, res) => {
         user: user,
         message: 'User registered!',
         sessionToken: token,
+        login: true,
       });
     })
     .catch((err) => res.status(500).json({ error: err }));
@@ -45,6 +46,7 @@ router.post('/signin', (req, res) => {
             user: user,
             message: 'Welcome Back',
             sessionToken: token,
+            login: true,
           });
         } else {
           res.status(500).json({ error: 'Password does not match' });
