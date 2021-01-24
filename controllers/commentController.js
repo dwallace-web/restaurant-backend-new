@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 //get comments by restaurant
-router.get('/:id', async (req, res) => {
+router.get('/restaurant/:id', async (req, res) => {
   try {
     await Comment.findAll({
       where: { restaurantId: req.params.id },
@@ -70,7 +70,7 @@ router.post('/', validateSession, async (req, res) => {
   }
 });
 
-router.put('/:id', validateSession, async (req, res) => {
+router.put('/restaurant/:id', validateSession, async (req, res) => {
   try {
     const query = { where: { id: req.params.id, userId: req.user.id } };
 
@@ -89,7 +89,7 @@ router.put('/:id', validateSession, async (req, res) => {
   }
 });
 
-router.delete('/:id', validateSession, async (req, res) => {
+router.delete('/restaurant/:id', validateSession, async (req, res) => {
   try {
     const query = { where: { id: req.params.id, userId: req.user.id } };
 
