@@ -18,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     phonenumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
+      unique: true,
     },
   });
   return User;
