@@ -33,6 +33,24 @@ router.get('/:id', async (req, res) => {
 
 const validateSession = require('../middleware/validate-session');
 
+//get comments by user
+router.get('/user/', validateSession, async (req, res) => {
+  let userid = req.user.id;
+
+  try {
+    await Comment.findAll({
+      where: { userId: userid },
+    }).then((comments) =>
+      res.status(200).json({
+        message: 'Comments Found',
+        data: comments,
+      })
+    );
+  } catch (e) {
+    res.status(500).json({ error: e });
+  }
+});
+
 router.post('/', validateSession, async (req, res) => {
   try {
     // console.log(req);
