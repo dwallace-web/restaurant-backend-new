@@ -22,5 +22,7 @@ const restaurantcontroller = require('./controllers/restaurantController');
 app.use('/restaurant', restaurantcontroller);
 
 app.listen(process.env.PORT, () =>
-  console.log(`App is listening on the Port number: ${process.env.PORT}`)
+  console.log(`App is listening on the Port number ---> ${process.env.PORT}`),
+  console.log(`The datbase url is--- > ${process.env.DATABASE_URL}`)
+
 );
